@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "djoser",
     "restaurant",
+    "rest_framework.authtoken",
 ]
 
 MIDDLEWARE = [
@@ -53,6 +55,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "littlelemon.urls"
+
+DJOSER = {"USER_ID_FIELD": "username"}
 
 TEMPLATES = [
     {
@@ -136,3 +140,11 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'restaurant/static'),
 ]
+
+# Add this configuration
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+}
